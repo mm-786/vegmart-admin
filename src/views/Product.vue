@@ -71,6 +71,7 @@ export default {
     return { prod: {} };
   },
   mounted() {
+    
     const firebaseConfig = {
       apiKey: "AIzaSyDn7efC-m69rn1jevcOIRw6-cIJITcacak",
       authDomain: "vegmart-c4605.firebaseapp.com",
