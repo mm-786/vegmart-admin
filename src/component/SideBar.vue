@@ -4,14 +4,14 @@
       <!-- Menu -->
       <nav id="menu">
         <ul>
-          <li><a href="/">DashBoard</a></li>
-          <li><a href="/user">User</a></li>
-          <li><a href="/order">Order</a></li>
-          <li><a href="/product">Product</a></li>
+          <li><router-link to="/">DashBoard</router-link></li>
+          <li><router-link to="/user">User</router-link></li>
+          <li><router-link to="/order">Order</router-link></li>
+          <li><router-link to="/product">Product</router-link></li>
           <li>
             <span class="opener">Setting</span>
             <ul>
-              <li><a href="/login">Logout</a></li>
+              <li><router-link to="/product">Logout</router-link></li>
             </ul>
           </li>
         </ul>
