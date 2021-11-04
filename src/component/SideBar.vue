@@ -11,7 +11,7 @@
           <li>
             <span class="opener">Setting</span>
             <ul>
-              <li><router-link to="/product">Logout</router-link></li>
+              <li><router-link to="/login">Logout</router-link></li>
             </ul>
           </li>
         </ul>

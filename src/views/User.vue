@@ -55,6 +55,7 @@
 			}
 		},
 		mounted() {
+			this.$forceUpdate();
 			const firebaseConfig = {
 				apiKey: "AIzaSyDn7efC-m69rn1jevcOIRw6-cIJITcacak",
 				authDomain: "vegmart-c4605.firebaseapp.com",
@@ -66,13 +67,14 @@
 			};
 			const firebaseApp = firebase.initializeApp(firebaseConfig);
 			const db = firebaseApp.firestore();
-			db.collection("user")
+			db.collection("user").where('type','!=',"admin")
 				.get()
 				.then((d) => {
 					d.forEach((d) => {
 						this.user[d.id] = d.data();
 					});
 				});
+				this.$forceUpdate();
 		},
 	};
 </script>

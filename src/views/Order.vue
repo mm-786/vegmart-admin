@@ -69,6 +69,8 @@ export default {
     };
   },
   mounted() {
+    alert('uu')
+    this.$forceUpdate();
 			const firebaseConfig = {
 				apiKey: "AIzaSyDn7efC-m69rn1jevcOIRw6-cIJITcacak",
 				authDomain: "vegmart-c4605.firebaseapp.com",
@@ -87,6 +89,7 @@ export default {
 						this.od[d.id] = d.data();
 					});
 				});
+        this.$forceUpdate();
 		},
 };
 </script>

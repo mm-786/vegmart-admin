@@ -1,7 +1,17 @@
 <template>
-  <router-view/>
+  <router-view />
 </template>
-
+<script>
+export default {
+  mounted() {
+    if(window.localStorage.getItem('urs')){
+      this.$router.replace('/')
+    }
+    else{
+    this.$router.replace('/login')}
+  },
+};
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
