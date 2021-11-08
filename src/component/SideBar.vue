@@ -4,10 +4,10 @@
       <!-- Menu -->
       <nav id="menu">
         <ul>
-          <li><router-link to="/">DashBoard</router-link></li>
-          <li><router-link to="/user">User</router-link></li>
-          <li><router-link to="/order">Order</router-link></li>
-          <li><router-link to="/product">Product</router-link></li>
+          <li><router-link to="/" replace>DashBoard</router-link></li>
+          <li><router-link to="/user" replace>User</router-link></li>
+          <li><router-link to="/order" replace>Order</router-link></li>
+          <li><router-link to="/product" replace>Product</router-link></li>
           <li>
             <span class="opener">Setting</span>
             <ul>
