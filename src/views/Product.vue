@@ -59,7 +59,7 @@
 </template>
 
 <script >
-import firebase from "firebase";
+import db from "../firebase.js";
 
 import SideBar from "../component/SideBar.vue";
 export default {
@@ -71,19 +71,7 @@ export default {
     return { prod: {} };
   },
   mounted() {
-    this.$forceUpdate();
-    const firebaseConfig = {
-      apiKey: "AIzaSyDn7efC-m69rn1jevcOIRw6-cIJITcacak",
-      authDomain: "vegmart-c4605.firebaseapp.com",
-      databaseURL: "https://vegmart-c4605-default-rtdb.firebaseio.com",
-      projectId: "vegmart-c4605",
-      storageBucket: "vegmart-c4605.appspot.com",
-      messagingSenderId: "402249625272",
-      appId: "1:402249625272:web:1dd85811f72e821e484e4d",
-    };
-    const firebaseApp = firebase.initializeApp(firebaseConfig);
-    const db = firebaseApp.firestore();
-    db.collection("product")
+    db.product
       .get()
       .then((d) => {
         d.forEach((d) => {

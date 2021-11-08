@@ -16,32 +16,51 @@
               <thead>
                 <tr>
                   <th>Id</th>
-                  <th>Date<br/>Time</th>
+                  <th>Date<br />Time</th>
                   <th>Item:Qty(kg)</th>
                   <th>Order Price</th>
-                  <th>User<br/>
-                  (Mobile No.)</th>
+                  <th>
+                    User<br />
+                    (Mobile No.)
+                  </th>
                   <th>Status</th>
                   <th>Operation</th>
                 </tr>
               </thead>
               <tbody style="text-align: left">
-                <tr v-for="o,i in od" :key="i">
-                  <td>{{i}}</td>
-                  <td>{{new Date(o.date.toDate()).getDate()}}/{{new Date(o.date.toDate()).getMonth()+1}}/{{new Date(o.date.toDate()).getFullYear()}}<br/>
-                    {{new Date(o.date.toDate()).getHours()}}:{{new Date(o.date.toDate()).getMinutes()}}:{{new Date(o.date.toDate()).getSeconds()}}
+                <tr v-for="(o, i) in od" :key="i">
+                  <td>{{ i }}</td>
+                  <td>
+                    {{ new Date(o.date.toDate()).getDate() }}/{{
+                      new Date(o.date.toDate()).getMonth() + 1
+                    }}/{{ new Date(o.date.toDate()).getFullYear() }}<br />
+                    {{ new Date(o.date.toDate()).getHours() }}:{{
+                      new Date(o.date.toDate()).getMinutes()
+                    }}:{{ new Date(o.date.toDate()).getSeconds() }}
                   </td>
-                  <td><ul style="list-style-type:none;"> 
-                        <li v-for="it,i in o.item" :key="i">{{i}} : {{it}}</li>
-                    </ul></td>
-                  <td>{{o.price}}</td>
-                  <td>{{o.user}}</td>
-                  <td>{{o.status}}</td>
-                  <td style="display: flex; justify-content: space-around;">
-                   <div><i class="fa fa-check" aria-hidden="true"></i><br>
-                   <i class="fa fa-check-square" aria-hidden="true"></i></div>
-                  <div> <i class="fa fa-truck" aria-hidden="true"></i><br>
-                   <i class="fa fa-trash" aria-hidden="true"></i></div>
+                  <td>
+                    <ul style="list-style-type: none">
+                      <li v-for="(it, i) in o.item" :key="i">
+                        <a>{{ i }}</a> : {{ it }}
+                      </li>
+                    </ul>
+                  </td>
+                  <td>{{ o.price }}</td>
+                  <td><a>{{ o.user }}</a></td>
+                  <td>{{ o.status }}</td>
+                  <td style="display: flex; justify-content: space-around">
+                    
+                      <a @click="updateOrderStatus(i,'accepted')" v-if="o.status === 'placed'"
+                        ><i class="fa fa-check" aria-hidden="true"></i
+                      ></a>
+                      <a @click="updateOrderStatus(i,'delivered')" v-if="o.status === 'out-for-deliver'"
+                        ><i class="fa fa-check-square" aria-hidden="true"></i
+                      ></a>
+                      <a @click="updateOrderStatus(i,'out-for-deliver')" v-if="o.status === 'accepted'"
+                        ><i class="fa fa-truck" aria-hidden="true"></i
+                      ></a>
+                      <a v-if="o.status != 'delivered'" @click="updateOrderStatus(i,'cancel')"> <i class="fa fa-trash" aria-hidden="true"></i></a>
+                  
                   </td>
                 </tr>
               </tbody>
@@ -55,7 +74,7 @@
 </template>
 
 <script >
-import firebase from "firebase";
+import db from "../firebase.js";
 
 import SideBar from "../component/SideBar.vue";
 export default {
@@ -69,27 +88,21 @@ export default {
     };
   },
   mounted() {
-    alert('uu')
+    db.order.get().then((d) => {
+      d.forEach((d) => {
+        this.od[d.id] = d.data();
+      });
+    });
     this.$forceUpdate();
-			const firebaseConfig = {
-				apiKey: "AIzaSyDn7efC-m69rn1jevcOIRw6-cIJITcacak",
-				authDomain: "vegmart-c4605.firebaseapp.com",
-				databaseURL: "https://vegmart-c4605-default-rtdb.firebaseio.com",
-				projectId: "vegmart-c4605",
-				storageBucket: "vegmart-c4605.appspot.com",
-				messagingSenderId: "402249625272",
-				appId: "1:402249625272:web:1dd85811f72e821e484e4d",
-			};
-			const firebaseApp = firebase.initializeApp(firebaseConfig);
-			const db = firebaseApp.firestore();
-			db.collection("order")
-				.get()
-				.then((d) => {
-					d.forEach((d) => {
-						this.od[d.id] = d.data();
-					});
-				});
-        this.$forceUpdate();
-		},
+  },
+  methods: {
+    updateOrderStatus(id, status) {
+      db.order.doc(id).update({
+        status: status,
+      }).then(()=>{
+       window.location.reload();
+      });
+    },
+  },
 };
 </script>
