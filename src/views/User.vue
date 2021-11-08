@@ -4,11 +4,21 @@
 			<!-- Main -->
 			<div id="main">
 				<div class="inner">
+								
 					<!-- Header -->
 					<header id="header">
+						<div style="display: flex; justify-content: space-around; background-color:rgba(245, 106, 106,0.3); padding: 10px; border-radius: 15px;">
+  <router-link to="/" style="color:white;padding: 5px; border-radius: 10px; font-weight: bold; background-color: rgba(245, 106, 106);">Dashboard</router-link>
+  <router-link to="/order" style="color:white; padding: 5px; border-radius: 10px; font-weight: bold; background-color: rgba(245, 106, 106);">Order</router-link>
+  <router-link to="/product" style="color:white; padding: 5px; border-radius: 10px; font-weight: bold; background-color: rgba(245, 106, 106);">Product</router-link>
+  <router-link to="/user" style="color:white; padding: 5px; border-radius: 10px; font-weight: bold; background-color: rgba(245, 106, 106);">User</router-link>
+  <router-link to="/login" style="color:white; padding: 5px; border-radius: 10px; font-weight: bold; background-color: rgba(245, 106, 106);">Logout</router-link>
+ </div>
+					</header>
+					<header id="header" style="margin-top:-50px">
 						<a href="" class="logo"><strong style="text-transform: uppercase">user</strong></a>
 					</header>
-
+					
 					<div class="table-wrapper" style="margin: 25px;">
 						<table>
 							<thead>
@@ -36,18 +46,18 @@
 					</div>
 				</div>
 			</div>
-			<SideBar />
+
 		</div>
 	</div>
 </template>
 
 <script>
 	import db from "../firebase.js";
-	import SideBar from "../component/SideBar.vue";
+
 	export default {
 		name: "user",
 		components: {
-			SideBar,
+
 		},
 		data() {
 			return {

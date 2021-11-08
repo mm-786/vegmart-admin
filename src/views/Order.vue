@@ -5,7 +5,16 @@
       <div id="main">
         <div class="inner">
           <!-- Header -->
-          <header id="header">
+         <header id="header">
+						<div style="display: flex; justify-content: space-around; background-color:rgba(245, 106, 106,0.3); padding: 10px; border-radius: 15px;">
+  <router-link to="/" style="color:white;padding: 5px; border-radius: 10px; font-weight: bold; background-color: rgba(245, 106, 106);">Dashboard</router-link>
+  <router-link to="/order" style="color:white; padding: 5px; border-radius: 10px; font-weight: bold; background-color: rgba(245, 106, 106);">Order</router-link>
+  <router-link to="/product" style="color:white; padding: 5px; border-radius: 10px; font-weight: bold; background-color: rgba(245, 106, 106);">Product</router-link>
+  <router-link to="/user" style="color:white; padding: 5px; border-radius: 10px; font-weight: bold; background-color: rgba(245, 106, 106);">User</router-link>
+  <router-link to="/login" style="color:white; padding: 5px; border-radius: 10px; font-weight: bold; background-color: rgba(245, 106, 106);">Logout</router-link>
+ </div>
+					</header>
+					<header id="header" style="margin-top:-50px">
             <a href="" class="logo"
               ><strong style="text-transform: uppercase">Order</strong></a
             >
@@ -17,7 +26,7 @@
                 <tr>
                   <th>Id</th>
                   <th>Date<br />Time</th>
-                  <th>Item:Qty(kg)</th>
+                  <th>Item:Qty(kg)*Price(rs)</th>
                   <th>Order Price</th>
                   <th>
                     User<br />
@@ -28,6 +37,7 @@
                 </tr>
               </thead>
               <tbody style="text-align: left">
+                
                 <tr v-for="(o, i) in od" :key="i">
                   <td>{{ i }}</td>
                   <td>
@@ -41,12 +51,12 @@
                   <td>
                     <ul style="list-style-type: none">
                       <li v-for="(it, i) in o.item" :key="i">
-                        <a>{{ i }}</a> : {{ it }}
+                        <abbr :title="getName(i)"><a>{{ i }}</a></abbr> : {{ it }}
                       </li>
                     </ul>
                   </td>
                   <td>{{ o.price }}</td>
-                  <td><a>{{ o.user }}</a></td>
+                  <td><abbr :title="getName(o.user)"><a>{{ o.user }}</a></abbr></td>
                   <td>{{ o.status }}</td>
                   <td style="display: flex; justify-content: space-around">
                     
@@ -68,7 +78,7 @@
           </div>
         </div>
       </div>
-      <SideBar />
+
     </div>
   </div>
 </template>
@@ -76,11 +86,10 @@
 <script >
 import db from "../firebase.js";
 
-import SideBar from "../component/SideBar.vue";
+
 export default {
   name: "Order",
   components: {
-    SideBar,
   },
   data() {
     return {
@@ -103,6 +112,12 @@ export default {
        window.location.reload();
       });
     },
+    getName(id){
+      return window.localStorage.getItem(id)
+    }
   },
 };
 </script>
+<style scoped>
+
+</style>
