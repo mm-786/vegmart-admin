@@ -113,7 +113,7 @@
                   <td style="width: 14%" ><input type="text" inputmode="numeric" v-model="add.price" /></td>
                   <td style="width: 14%"><input type="text" inputmode="numeric" v-model="add.stock"/></td>
                   <td style="width: 14%">
-                    <input type="button" @click="saveFile()" style="width: 100%" value="ADD" />
+                    <input type="button" @click="addPro()" style="width: 100%" value="ADD" />
                   </td>
                 </tr>
                 <tr v-for="(p, i) in prod" :key="i">
@@ -192,6 +192,17 @@ export default {
         .then(() => {
           window.location.reload();
         });
+    },
+    addPro(){
+      db.product.doc(this.add.id).set({
+        'name':this.add.name,
+        'img':this.add.img,
+        'price':this.add.price,
+        'stock':this.add.stock,
+        'cat':this.add.cat
+      }).then(()=>{
+        window.location.reload();
+      })
     }
   },
 };
