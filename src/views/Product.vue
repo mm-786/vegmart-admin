@@ -18,11 +18,11 @@
               <router-link
                 to="/"
                 style="
-                  color: white;
+                 color: rgba(245, 106, 106);
                   padding: 5px;
                   border-radius: 10px;
                   font-weight: bold;
-                  background-color: rgba(245, 106, 106);
+                  
                 "
               >
                 Dashboard</router-link
@@ -30,11 +30,11 @@
               <router-link
                 to="/order"
                 style="
-                  color: white;
+                 color: rgba(245, 106, 106);
                   padding: 5px;
                   border-radius: 10px;
                   font-weight: bold;
-                  background-color: rgba(245, 106, 106);
+                  
                 "
               >
                 Order</router-link
@@ -42,11 +42,11 @@
               <router-link
                 to="/product"
                 style="
-                  color: white;
+                 color: rgba(245, 106, 106);
                   padding: 5px;
                   border-radius: 10px;
                   font-weight: bold;
-                  background-color: rgba(245, 106, 106);
+                  
                 "
               >
                 Product</router-link
@@ -54,11 +54,11 @@
               <router-link
                 to="/user"
                 style="
-                  color: white;
+                 color: rgba(245, 106, 106);
                   padding: 5px;
                   border-radius: 10px;
                   font-weight: bold;
-                  background-color: rgba(245, 106, 106);
+                  
                 "
               >
                 User</router-link
@@ -66,11 +66,11 @@
               <router-link
                 to="/login"
                 style="
-                  color: white;
+                 color: rgba(245, 106, 106);
                   padding: 5px;
                   border-radius: 10px;
                   font-weight: bold;
-                  background-color: rgba(245, 106, 106);
+                  
                 "
               >
                 Logout</router-link
