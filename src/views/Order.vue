@@ -1,6 +1,6 @@
 <template>
   <div class="is-preload">
-    <div id="wrapper">
+    <div v-if="!print" id="wrapper">
       <!-- Main -->
       <div id="main">
         <div class="inner">
@@ -39,7 +39,7 @@
               <tbody style="text-align: left">
                 
                 <tr v-for="(o, i) in od" :key="i">
-                  <td>{{ i }}</td>
+                  <td><abbr @click="printOrderSlip(i,o.user)" title="Click to Print Order Slip"><a>{{ i }}</a></abbr></td>
                   <td>
                     {{ new Date(o.date.toDate()).getDate() }}/{{
                       new Date(o.date.toDate()).getMonth() + 1
@@ -60,7 +60,7 @@
                   <td>{{ o.status }}</td>
                   <td style="display: flex; justify-content: space-around">
                     
-                      <a @click="updateOrderStatus(i,'accepted')" v-if="o.status === 'placed'"
+                      <a @click="updateOrderStatus(i,'accepted');" v-if="o.status === 'placed'"
                         ><i class="fa fa-check" aria-hidden="true"></i
                       ></a>
                       <a @click="updateOrderStatus(i,'delivered')" v-if="o.status === 'out-for-deliver'"
@@ -80,21 +80,111 @@
       </div>
 
     </div>
+    <!--  -->
+    
+    <div v-if="print" style="width: 21cm; height: 29.7cm; text-align: justify;">
+      <hr>
+      <div style="display: flex; justify-content: space-between;">
+        <h3>{{orderSlip.orderID}}</h3>
+        <h5>Order Date - {{orderSlip.date}}</h5>
+      </div>
+      <hr>
+      <div style="display: flex; justify-content: space-between;">
+      <div>
+      <h5>Billing And Shipping Address</h5>
+      {{orderSlip.name}}<br/>
+      {{orderSlip.add.street}},<br/>
+      {{orderSlip.add.addessLine}},<br/>
+      {{orderSlip.add.landmark}},<br/>
+      {{orderSlip.add.city}}({{orderSlip.add.state}})-{{orderSlip.add.pin}}<br/></div>
+      <div style="background-color: black; width: 1px;"></div>
+      <div>
+        <h5>Seller Address</h5>
+        {{orderSlip.name}}<br/>
+        {{orderSlip.add.street}},<br/>
+        {{orderSlip.add.addessLine}},<br/>
+        {{orderSlip.add.landmark}},<br/>
+        {{orderSlip.add.city}}({{orderSlip.add.state}})-{{orderSlip.add.pin}}<br/></div>
+    </div>
+    <hr>
+    <div class="table-wrapper">
+    <table class="alt">
+      <tr>
+        <th>
+          Id
+        </th>
+        <th>
+          Name
+        </th>
+        <th>
+          Qty.(kg)
+        </th>
+        <th>
+          Price(rs)
+        </th>
+        <th>
+          Total
+        </th>
+      </tr>
+      <tr v-for="it,i in orderSlip.item" :key="i">
+        <td>
+          {{i}}
+        </td>
+        <td>
+          {{getName(i)}}
+        </td>
+        <td>
+          {{it.split('*')[0]}}
+        </td>
+        <td>
+          {{it.split('*')[1]}}
+        </td>
+        <td>
+          {{it.split('*')[1]*it.split('*')[0]}}
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <th>{{orderSlip.ttl}}</th>
+      </tr>
+    </table>
+  </div>
+  <hr>
+    
+    </div>
+
+    <!--  -->
   </div>
 </template>
 
-<script >
+<script lang="js">
 import db from "../firebase.js";
 
 
 export default {
   name: "Order",
   components: {
+  
   },
   data() {
     return {
       od: {},
-    };
+      orderSlip:{
+        orderID:'',
+        name:'',
+        date:'',
+        item:{},
+        add:{},
+        email:'',
+        mob:'',
+        ttl:''
+      },
+      print:false,
+      margins:{}
+    }
   },
   mounted() {
     db.order.get().then((d) => {
@@ -114,7 +204,30 @@ export default {
     },
     getName(id){
       return window.localStorage.getItem(id)
-    }
+    },
+    printOrderSlip(oId,uId){
+      this.print=true
+      db.order.doc(oId).get().then(d=>{
+        this.orderSlip.orderID=oId;
+        this.orderSlip.date= new Date(d.data().date.seconds*1000).toLocaleString()
+        this.orderSlip.item = d.data().item
+        this.orderSlip.ttl = d.data().price
+      })
+      db.user.doc(uId).get().then(d=>{
+        this.orderSlip.name=d.data().name;
+        this.orderSlip.add=d.data().add;
+        this.orderSlip.mob=d.data().mob;
+        this.orderSlip.email=d.data().email;
+      })
+      setTimeout(() => {
+        window.print();
+      }, 1000);
+      setTimeout(() => {
+       this.print=false
+      }, 3000);
+ 
+    },
+     
   },
 };
 </script>
