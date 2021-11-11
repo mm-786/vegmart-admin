@@ -6,68 +6,69 @@
         <div class="inner">
           <!-- Header -->
           <header id="header">
-            <div
-              style="
-                display: flex;
-                justify-content: space-around;
-                background-color: rgba(245, 106, 106, 0.3);
-                padding: 10px;
-                border-radius: 15px;
-              "
-            >
-              <router-link
-                to="/"
-                style="
-                 color: rgba(245, 106, 106);
-                  padding: 5px;
-                  border-radius: 10px;
-                  font-weight: bold;
-                "
-                >Dashboard</router-link
-              >
-              <router-link
-                to="/order"
-                style="
-                 color: rgba(245, 106, 106);
-                  padding: 5px;
-                  border-radius: 10px;
-                  font-weight: bold;
-                "
-                >Order</router-link
-              >
-              <router-link
-                to="/product"
-                style="
-                 color: rgba(245, 106, 106);
-                  padding: 5px;
-                  border-radius: 10px;
-                  font-weight: bold;
-                "
-                >Product</router-link
-              >
-              <router-link
-                to="/user"
-                style="
-                 color: rgba(245, 106, 106);
-                  padding: 5px;
-                  border-radius: 10px;
-                  font-weight: bold;
-                "
-                >User</router-link
-              >
-              <router-link
-                to="/login"
-                style="
-                 color: rgba(245, 106, 106);
-                  padding: 5px;
-                  border-radius: 10px;
-                  font-weight: bold;
-                "
-                >Logout</router-link
-              >
-            </div>
+           
           </header>
-          <header id="header" style="margin-top: -50px">
+           <header id="header" style="margin-top: -50px; display: grid; ">
+            <div
+            style="
+              display: flex;
+              justify-content: space-around;
+              background-color: rgba(245, 106, 106, 0.3);
+              padding: 10px;
+              border-radius: 15px;
+            "
+          >
+            <router-link
+              to="/"
+              style="
+                color: rgba(245, 106, 106);
+                
+                border-radius: 10px;
+                font-weight: bold;
+              "
+              >Dashboard</router-link
+            >
+            <router-link
+              to="/order"
+              style="
+                color: rgba(245, 106, 106);
+                
+                border-radius: 10px;
+                font-weight: bold;
+              "
+              >Order</router-link
+            >
+            <router-link
+              to="/product"
+              style="
+                color: rgba(245, 106, 106);
+                
+                border-radius: 10px;
+                font-weight: bold;
+              "
+              >Product</router-link
+            >
+            <router-link
+              to="/user"
+              style="
+                color: rgba(245, 106, 106);
+                
+                border-radius: 10px;
+                font-weight: bold;
+              "
+              >User</router-link
+            >
+            <router-link
+              to="/login"
+              style="
+                color: rgba(245, 106, 106);
+                
+                border-radius: 10px;
+                font-weight: bold;
+              "
+              >Logout</router-link
+            >
+          </div>
             <a href="" class="logo"
               ><strong style="text-transform: uppercase">user</strong></a
             >

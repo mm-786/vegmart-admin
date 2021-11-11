@@ -57,7 +57,9 @@
 				
 			const usr = await db.user.where('mob','==',this.mob).where('pin','==',this.pin).where('type','==','admin').get()
 				if (usr.empty) {
-					alert('not')
+					alert('Invalid :(');
+					this.mob="";
+					this.pin="";
 				}else{
 					window.localStorage.setItem('urs',this.mob);
 					this.$router.replace('/')
