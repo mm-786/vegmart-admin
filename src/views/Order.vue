@@ -135,7 +135,7 @@
     </div>
     <!--  -->
 
-    <div v-if="print" style="width: 21cm; height: 29.7cm; text-align: justify;">
+    <div v-if="print" style="text-align: justify;">
       <hr>
       <div style="display: flex; justify-content: space-between;">
         <h3>{{orderSlip.orderID}}</h3>
@@ -154,15 +154,14 @@
         <div style="background-color: black; width: 1px;"></div>
         <div>
           <h5>Seller Address</h5>
-          {{orderSlip.name}}<br />
-          {{orderSlip.add.street}},<br />
-          {{orderSlip.add.addessLine}},<br />
-          {{orderSlip.add.landmark}},<br />
-          {{orderSlip.add.city}}({{orderSlip.add.state}})-{{orderSlip.add.pin}}<br />
+          <b>Veg Mart</b><br />
+          Panchmukha Hanuman Street,<br />
+          Near Waniyawad Circle ,<br />
+          Bhuj(GUJ)-370 001<br />
+          +91 91069 42548
         </div>
       </div>
       <hr>
-      <div class="table-wrapper">
         <table class="alt">
           <tr>
             <th>
@@ -206,9 +205,7 @@
             <th>{{orderSlip.ttl}}</th>
           </tr>
         </table>
-      </div>
       <hr>
-
     </div>
 
     <!--  -->
