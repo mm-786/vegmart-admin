@@ -146,9 +146,7 @@
         <div>
           <h5>Billing And Shipping Address</h5>
           {{orderSlip.name}}<br />
-          {{orderSlip.add.street}},<br />
           {{orderSlip.add.addessLine}},<br />
-          {{orderSlip.add.landmark}},<br />
           {{orderSlip.add.city}}({{orderSlip.add.state}})-{{orderSlip.add.pin}}<br />
         </div>
         <div style="background-color: black; width: 1px;"></div>
