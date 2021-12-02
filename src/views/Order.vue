@@ -121,7 +121,7 @@
                         class="fa fa-check-square" aria-hidden="true"></i></a>
                     <a @click="updateOrderStatus(i,'out-for-deliver')" v-if="o.status === 'accepted'"><i
                         class="fa fa-truck" aria-hidden="true"></i></a>
-                    <a v-if="o.status != 'delivered'" @click="updateOrderStatus(i,'cancel')"> <i class="fa fa-trash"
+                    <a v-if="o.status != 'delivered' || o.status != 'cancel'" @click="updateOrderStatus(i,'cancel')"> <i class="fa fa-trash"
                         aria-hidden="true"></i></a>
 
                   </td>
