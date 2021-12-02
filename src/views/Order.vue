@@ -115,7 +115,7 @@
                   <td>{{ o.status }}</td>
                   <td style="display: flex; justify-content: space-around">
 
-                    <a @click="updateOrderStatus(i,'accepted');" v-if="o.status === 'placed'"><i class="fa fa-check"
+                    <a @click="updateOrderStatus(i,'accepted');" v-if="o.status === 'place'"><i class="fa fa-check"
                         aria-hidden="true"></i></a>
                     <a @click="updateOrderStatus(i,'delivered')" v-if="o.status === 'out-for-deliver'"><i
                         class="fa fa-check-square" aria-hidden="true"></i></a>
